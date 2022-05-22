@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import RealmSwift
 
-class TodoListViewController: UITableViewController{
+class TodoListViewController: SwipeTableViewController{
     let realm = try! Realm()
     var retorno = ""
     var  itemArray = [Item]()
@@ -77,8 +77,10 @@ class TodoListViewController: UITableViewController{
      */
     func loadItems(){
         debugPrint(#function)
-        todoItems = selectedCategory?.items.sorted(byKeyPath: "title",
-                                                   ascending: true)
+        todoItems = selectedCategory?
+            .items
+            .sorted(byKeyPath: "title",
+                    ascending: true)
         tableView.reloadData()
     }
     /*
@@ -91,8 +93,11 @@ class TodoListViewController: UITableViewController{
      */
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         var textField = UITextField()
-        let alert = UIAlertController(title: "Add a new TODO item", message: "", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
+        let alert = UIAlertController(title: "Add a new TODO item",
+                                      message: "",
+                                      preferredStyle: .alert)
+        let action = UIAlertAction(title: "Add Item",
+                                   style: .default) { (action) in
             // what wil happen onc the user click alerts
             if(!(textField.text?.isEmpty ?? false) ){
                 if let currentCategory = self.selectedCategory {
@@ -133,6 +138,7 @@ class TodoListViewController: UITableViewController{
         
         debugPrint( FileManager.default.urls(for: .documentDirectory,
                                              in: .userDomainMask))
+        tableView.rowHeight = 80.0
         //  loadItems()
     }
     
@@ -141,8 +147,8 @@ class TodoListViewController: UITableViewController{
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell",
-                                                 for: indexPath)
+        //let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell",for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         if let item = todoItems?[indexPath.row] {
             debugPrint(item)
             cell.textLabel?.text = item.title
@@ -172,7 +178,17 @@ class TodoListViewController: UITableViewController{
         self.tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    
+    override func updateModel(at indexPath: IndexPath) {
+        if let todo2delete = todoItems?[indexPath.row]{
+            do {
+                try self.realm.write({
+                    self.realm.delete(todo2delete)
+                })
+            } catch  {
+                print("Error borrando el todo " + error.localizedDescription)
+            }
+        }
+    }
     
 }
 //MARK: - Search bar methods

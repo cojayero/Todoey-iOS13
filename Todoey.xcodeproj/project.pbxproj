@@ -12,6 +12,8 @@
 		EB2BE501239524DB00FB933B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB2BE4FF239524DB00FB933B /* Main.storyboard */; };
 		EB2BE503239524DC00FB933B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB2BE502239524DC00FB933B /* Assets.xcassets */; };
 		EB2BE506239524DC00FB933B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB2BE504239524DC00FB933B /* LaunchScreen.storyboard */; };
+		F39BD8692839379A003340B3 /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = F39BD8682839379A003340B3 /* SwipeCellKit */; };
+		F39BD86B283941AE003340B3 /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39BD86A283941AE003340B3 /* SwipeTableViewController.swift */; };
 		F3B5FFDE28198EB40030C107 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3B5FFDC28198EB40030C107 /* DataModel.xcdatamodeld */; };
 		F3B5FFE02819A7380030C107 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B5FFDF2819A7380030C107 /* CategoryViewController.swift */; };
 		F3B5FFE32819C3620030C107 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = F3B5FFE22819C3620030C107 /* Realm */; };
@@ -29,6 +31,7 @@
 		EB2BE502239524DC00FB933B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB2BE505239524DC00FB933B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB2BE507239524DC00FB933B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F39BD86A283941AE003340B3 /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		F3B5FFDD28198EB40030C107 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		F3B5FFDF2819A7380030C107 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		F3B5FFE62819C44C0030C107 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
@@ -42,6 +45,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3B5FFE52819C3620030C107 /* RealmSwift in Frameworks */,
+				F39BD8692839379A003340B3 /* SwipeCellKit in Frameworks */,
 				F3B5FFE32819C3620030C107 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,6 +98,7 @@
 			children = (
 				F3B5FFDF2819A7380030C107 /* CategoryViewController.swift */,
 				EB2BE4FD239524DB00FB933B /* TodoListViewController.swift */,
+				F39BD86A283941AE003340B3 /* SwipeTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -134,6 +139,7 @@
 			packageProductDependencies = (
 				F3B5FFE22819C3620030C107 /* Realm */,
 				F3B5FFE42819C3620030C107 /* RealmSwift */,
+				F39BD8682839379A003340B3 /* SwipeCellKit */,
 			);
 			productName = Todoey;
 			productReference = EB2BE4F6239524DB00FB933B /* Todoey.app */;
@@ -165,6 +171,7 @@
 			mainGroup = EB2BE4ED239524DB00FB933B;
 			packageReferences = (
 				F3B5FFE12819C3620030C107 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				F39BD8672839379A003340B3 /* XCRemoteSwiftPackageReference "SwipeCellKit" */,
 			);
 			productRefGroup = EB2BE4F7239524DB00FB933B /* Products */;
 			projectDirPath = "";
@@ -193,6 +200,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F39BD86B283941AE003340B3 /* SwipeTableViewController.swift in Sources */,
 				F3B5FFE02819A7380030C107 /* CategoryViewController.swift in Sources */,
 				F3B5FFE72819C44C0030C107 /* Data.swift in Sources */,
 				F3B5FFDE28198EB40030C107 /* DataModel.xcdatamodeld in Sources */,
@@ -403,6 +411,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F39BD8672839379A003340B3 /* XCRemoteSwiftPackageReference "SwipeCellKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwipeCellKit/SwipeCellKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		F3B5FFE12819C3620030C107 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
@@ -414,6 +430,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F39BD8682839379A003340B3 /* SwipeCellKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F39BD8672839379A003340B3 /* XCRemoteSwiftPackageReference "SwipeCellKit" */;
+			productName = SwipeCellKit;
+		};
 		F3B5FFE22819C3620030C107 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F3B5FFE12819C3620030C107 /* XCRemoteSwiftPackageReference "realm-swift" */;

@@ -9,8 +9,9 @@
 import UIKit
 import CoreData
 import RealmSwift
+//import SwipeCellKit
 
-class CategoryViewController: UITableViewController {
+class CategoryViewController: SwipeTableViewController {
     
     var categories = [Category]()
     let context = (UIApplication.shared.delegate as! AppDelegate)
@@ -52,6 +53,8 @@ class CategoryViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadCategories()
+        tableView.rowHeight = 80.0
+        
     }
     
     //MARK: - Data manipulation methods
@@ -78,7 +81,7 @@ class CategoryViewController: UITableViewController {
                 debugPrint("Saved category \(category)")
             })
         } catch  {
-            print("Error saving catgory \(error)")
+            print("Error saving category \(error)")
         }
         tableView.reloadData()
     }
@@ -100,15 +103,39 @@ class CategoryViewController: UITableViewController {
         tableView.reloadData()
     }
     
-
+    override func updateModel(at indexPath: IndexPath) {
+        if let cat2Delete = self.categories2?[indexPath.row]{
+            
+            do {
+                try self.realm.write({
+                    self.realm.delete(cat2Delete)
+                })
+            } catch {
+                print("Error deleting category " + error.localizedDescription )
+            }
+        }
+    }
 
     //MARK: - Table View Datasource methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categories2?.count ?? 1
     }
+    
+    /*
+     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! SwipeTableViewCell
+         cell.delegate = self
+         return cell
+     }
+     
+     */
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
-        cell.textLabel?.text = categories2?[indexPath.row].name ?? "No categoris aded yet"
+        
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        cell
+            .textLabel?
+            .text = categories2?[indexPath.row].name ?? "No categoris aded yet"
         return cell
         
     }
@@ -131,3 +158,4 @@ class CategoryViewController: UITableViewController {
     
 
 }
+
